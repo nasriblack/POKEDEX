@@ -6,6 +6,7 @@ type Props = {
   children: React.ReactNode;
   onClick?: () => void;
   style?: React.CSSProperties;
+  isDisabled?: boolean;
 };
 
 const Button = (props: Props) => {
@@ -16,6 +17,7 @@ const Button = (props: Props) => {
         className={props.className}
         onClick={props.onClick}
         style={props.style}
+        disabled={props.isDisabled}
       >
         {props.children}
       </button>

@@ -5,24 +5,33 @@ import { getPokemon, getRandomPokemon } from "../services/api";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!search) return;
-
+    setIsLoading(true);
     try {
       await getPokemon(search);
+      setIsLoading(false);
       navigate(`/pokemon/${search.toLowerCase()}`);
     } catch (error) {
-      throw new Error(` an Error occurred: ${error}`);
+      setIsLoading(false);
+      navigate(`/pokemon/notfound`);
+      // throw new Error(` an Error occurred: ${error}`);
     }
   };
   const handleRandom = async () => {
+    setIsLoading(false);
+
     try {
       const pokemon = await getRandomPokemon();
+      setIsLoading(true);
+
       navigate(`/pokemon/${pokemon.id}`);
     } catch (error) {
+      setIsLoading(false);
       throw new Error(` an Error occurred: ${error}`);
     }
   };
@@ -43,11 +52,16 @@ const SearchPage = () => {
             />
           </div>
           <div className="button-group">
-            <Button type="submit" className="button-primary">
+            <Button
+              type="submit"
+              isDisabled={isLoading}
+              className="button-primary"
+            >
               Search
             </Button>
             <Button
               type="button"
+              isDisabled={isLoading}
               className="button-primary"
               onClick={handleRandom}
             >

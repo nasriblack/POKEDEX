@@ -7,6 +7,7 @@ const api = axios.create({
 
 export const getPokemon = async (idOrName: string | number): Promise<Pokemon> => {
   const { data } = await api.get(`/pokemon/${idOrName.toString().toLowerCase()}`);
+  console.log('checking the data', data)
   return data;
 };
 
