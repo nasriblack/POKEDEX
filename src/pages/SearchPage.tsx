@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/button/Button";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
@@ -39,16 +40,16 @@ const SearchPage = () => {
             />
           </div>
           <div className="button-group">
-            <button type="submit" className="button-primary">
+            <Button type="submit" className="button-primary">
               Search
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              onClick={handleRandom}
               className="button-primary"
+              onClick={handleRandom}
             >
               Random
-            </button>
+            </Button>
           </div>
         </form>
       </div>
