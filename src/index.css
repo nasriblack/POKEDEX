@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+
 :root {
   --color-background: #ffffff;
   --color-border: #CFC7C2;
@@ -115,4 +118,34 @@ body {
   background-color: var(--color-primary-hover);
 }
 
-/*  */
+/* NO POKEMON FOUND */
+.container_nopokemon {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  padding-block: 10rem;
+  /* justify-content: center; */
+  background: #FE5858;
+  /* background: url('/public/nopokemon_found.png') no-repeat center/cover; */
+}
+
+.header_nopoekmon {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-inline: 5rem;
+}
+
+.title_nopokemon {
+  font-family: "Single Day", serif;
+  color: var(--color-background);
+  font-size: 75px;
+  font-weight: 400;
+  line-height: 93.75px;
+  text-align: center;
+  width: 100%;
+};
+
+.back_arrow {}
