@@ -20,6 +20,8 @@ body {
   overflow: hidden;
 }
 
+/* SEARCH PAGE CSS */
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -107,3 +109,5 @@ body {
 .button-primary:hover {
   background-color: var(--color-primary-hover);
 }
+
+/*  */

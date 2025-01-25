@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
+import { getPokemon, getRandomPokemon } from "../services/api";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
@@ -11,6 +12,7 @@ const SearchPage = () => {
     if (!search) return;
 
     try {
+      await getPokemon(search);
       navigate(`/pokemon/${search.toLowerCase()}`);
     } catch (error) {
       throw new Error(` an Error occurred: ${error}`);
@@ -18,7 +20,8 @@ const SearchPage = () => {
   };
   const handleRandom = async () => {
     try {
-      navigate(`/pokemon/random`);
+      const pokemon = await getRandomPokemon();
+      navigate(`/pokemon/${pokemon.id}`);
     } catch (error) {
       throw new Error(` an Error occurred: ${error}`);
     }
