@@ -17,6 +17,7 @@ const StatComponent = ({ pokemon, backgroundColor }: Props) => {
     >
       {pokemon.stats.map((stat) => (
         <div
+          key={stat.stat.name}
           style={{
             width: "100%",
             display: "flex",
@@ -27,7 +28,12 @@ const StatComponent = ({ pokemon, backgroundColor }: Props) => {
           <div className="stat_name" style={{ color: backgroundColor }}>
             {statNameTransformation(stat.stat.name)}
           </div>
-          <div className="stat_base">{stat.base_stat}</div>
+          <div
+            className="stat_base"
+            data-testid={`${stat.stat.name.toLowerCase()}-value`}
+          >
+            {stat.base_stat}
+          </div>
           <div className="stat_bar">
             <div
               className="stat_bar_fill"
