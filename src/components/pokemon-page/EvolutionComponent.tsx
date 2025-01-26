@@ -1,42 +1,18 @@
 import React from "react";
-import { EvolutionChain } from "../../types/pokemon";
 import { useNavigate } from "react-router-dom";
 import { MoveRight } from "lucide-react";
 
 type Props = {
-  evolution: EvolutionChain;
+  pokemonEvolution: {
+    name: string;
+    img: string;
+  }[];
   backgroundColor: string;
 };
 
-const EvolutionComponent = ({ evolution, backgroundColor }: Props) => {
-  const chain = evolution.chain;
+const EvolutionComponent = ({ pokemonEvolution, backgroundColor }: Props) => {
+  console.log("pokemonEvolution", pokemonEvolution);
   const navigate = useNavigate();
-  const pokemonEvolution = [
-    {
-      name: chain?.species?.name,
-      img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-        chain.species.url.split("/")[6]
-      }.png`,
-    },
-    ...chain.evolves_to.map((e) => {
-      return {
-        name: e.species.name,
-        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-          e.species.url.split("/")[6]
-        }.png`,
-      };
-    }),
-    ...chain.evolves_to.flatMap((e) =>
-      e.evolves_to.map((e2) => {
-        return {
-          name: e2.species.name,
-          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-            e2.species.url.split("/")[6]
-          }.png`,
-        };
-      })
-    ),
-  ];
 
   return (
     <div className="evolution_container">

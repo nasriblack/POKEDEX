@@ -61,6 +61,34 @@ const PokemonPage = () => {
     .find((entry) => entry.language.name === "en")
     ?.flavor_text.replace(/\f/g, " ");
 
+  const chain = evolution?.chain;
+
+  const pokemonEvolution = [
+    {
+      name: chain?.species?.name,
+      img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+        chain.species.url.split("/")[6]
+      }.png`,
+    },
+    ...chain.evolves_to.map((e) => {
+      return {
+        name: e.species.name,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+          e.species.url.split("/")[6]
+        }.png`,
+      };
+    }),
+    ...chain.evolves_to.flatMap((e) =>
+      e.evolves_to.map((e2) => {
+        return {
+          name: e2.species.name,
+          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+            e2.species.url.split("/")[6]
+          }.png`,
+        };
+      })
+    ),
+  ];
   return (
     <>
       <div style={{ backgroundColor }} className="pokemon_page_container">
@@ -90,7 +118,7 @@ const PokemonPage = () => {
             {activeTab === "evolutions" && (
               <EvolutionComponent
                 backgroundColor={backgroundColor}
-                evolution={evolution}
+                pokemonEvolution={pokemonEvolution}
               />
             )}
           </div>
