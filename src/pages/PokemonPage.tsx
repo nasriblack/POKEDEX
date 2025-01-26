@@ -10,6 +10,7 @@ import {
 import { TYPE_COLORS } from "../constants/pokemonColor";
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import Button from "../components/button/Button";
+import { statNameTransformation } from "../utlis";
 
 const PokemonPage = () => {
   const { idOrName } = useParams<{ idOrName: string }>();
@@ -76,7 +77,7 @@ const PokemonPage = () => {
           }}
         >
           <div className="stat_name" style={{ color: backgroundColor }}>
-            {stat.stat.name}
+            {statNameTransformation(stat.stat.name)}
           </div>
           <div className="stat_base">{stat.base_stat}</div>
           <div className="stat_bar">
