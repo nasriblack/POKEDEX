@@ -286,3 +286,14 @@ body {
   transition: width 0.3s ease;
 }
 
+
+/* EVOLUTION TAB CSS */
+
+.evolution_container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+
+}
+

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { EvolutionChain, Pokemon, PokemonSpecies } from "../types/pokemon";
 import {
@@ -8,7 +8,7 @@ import {
   getPokemonSpecies,
 } from "../services/api";
 import { TYPE_COLORS } from "../constants/pokemonColor";
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, MoveRight } from "lucide-react";
 import Button from "../components/button/Button";
 import { statNameTransformation } from "../utlis";
 
@@ -22,8 +22,6 @@ const PokemonPage = () => {
     "stats"
   );
   const [error, setError] = useState<boolean>(false);
-
-  console.log("checking the idOrName", idOrName);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -93,6 +91,76 @@ const PokemonPage = () => {
       ))}
     </div>
   );
+  const renderEvolutions = () => {
+    const chain = evolution.chain;
+    const evolutions = [
+      chain.species.name,
+      ...chain.evolves_to.map((e) => e.species.name),
+      ...chain.evolves_to.flatMap((e) =>
+        e.evolves_to.map((e2) => e2.species.name)
+      ),
+    ];
+    const pokemonEvolution = [
+      {
+        name: chain?.species?.name,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+          chain.species.url.split("/")[6]
+        }.png`,
+      },
+      ...chain.evolves_to.map((e) => {
+        return {
+          name: e.species.name,
+          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+            e.species.url.split("/")[6]
+          }.png`,
+        };
+      }),
+      ...chain.evolves_to.flatMap((e) =>
+        e.evolves_to.map((e2) => {
+          return {
+            name: e2.species.name,
+            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+              e2.species.url.split("/")[6]
+            }.png`,
+          };
+        })
+      ),
+    ];
+
+    return (
+      <div className="evolution_container">
+        {pokemonEvolution?.map((item, index) => (
+          <React.Fragment key={index}>
+            {index > 0 && <MoveRight color={backgroundColor} />}
+            <div
+              style={{
+                textAlign: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => navigate(`/pokemon/${item.name}`)}
+            >
+              <img
+                src={item.img}
+                alt={item.name}
+                style={{
+                  width: "6rem",
+                  height: "6rem",
+                }}
+              />
+              <p
+                style={{
+                  textTransform: "capitalize",
+                  marginTop: "0.5rem",
+                }}
+              >
+                {item.name}
+              </p>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -147,6 +215,7 @@ const PokemonPage = () => {
 
           <div className="pokemon_page_tab_content">
             {activeTab === "stats" && renderStats()}
+            {activeTab === "evolutions" && renderEvolutions()}
           </div>
         </div>
       </div>
