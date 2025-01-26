@@ -8,7 +8,8 @@ import {
   getPokemonSpecies,
 } from "../services/api";
 import { TYPE_COLORS } from "../constants/pokemonColor";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
+import Button from "../components/button/Button";
 
 const PokemonPage = () => {
   const { idOrName } = useParams<{ idOrName: string }>();
@@ -96,7 +97,7 @@ const PokemonPage = () => {
     <>
       <div style={{ backgroundColor }} className="pokemon_page_container">
         <button onClick={() => navigate("/")} className="back_button">
-          <ArrowLeft color="white" size={24} />
+          <ChevronLeft color="white" size={39} height={67} />
         </button>
 
         <div className="pokemon_page_content_card">
@@ -127,7 +128,8 @@ const PokemonPage = () => {
 
           <div className="pokemon_page_tab_container">
             {(["stats", "evolutions", "moves"] as const).map((tab) => (
-              <button
+              <Button
+                type="button"
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`tab_button ${activeTab === tab ? "active" : ""}`}
@@ -138,7 +140,7 @@ const PokemonPage = () => {
                 }
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
+              </Button>
             ))}
           </div>
 
