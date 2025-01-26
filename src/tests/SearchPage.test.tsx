@@ -18,7 +18,7 @@ describe("SearchPage", () => {
     );
   };
 
-  it.only("renders search input and buttons", () => {
+  it("renders search input and buttons", () => {
     renderComponent();
 
     expect(screen.getByText(/Pokemon Name or Id/i)).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("SearchPage", () => {
     expect(screen.getByRole("button", { name: /random/i })).toBeInTheDocument();
   });
 
-  it.only("handles search for existing pokemon", async () => {
+  it("handles search for existing pokemon", async () => {
     renderComponent();
 
     const input = screen.getByTestId("search_input");
@@ -39,7 +39,7 @@ describe("SearchPage", () => {
     expect(getPokemon).toHaveBeenCalledWith("pikachu");
   });
 
-  it.only("navigates to not found page for invalid pokemon", async () => {
+  it("navigates to not found page for invalid pokemon", async () => {
     vi.mocked(getPokemon).mockRejectedValue(new Error("Not found"));
 
     renderComponent();
