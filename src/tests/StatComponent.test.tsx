@@ -13,7 +13,7 @@ describe("Rendering the information Pokemon Component", () => {
     );
   };
 
-  it("renders search input and buttons", () => {
+  it("should render the stat correctly", () => {
     renderComponent();
     const expectedStats = ["HP", "ATK", "DEF", "SATK", "SDEF", "SPD"];
     expectedStats.forEach((stat) => {
