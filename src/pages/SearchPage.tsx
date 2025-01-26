@@ -3,25 +3,33 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
 import { getPokemon, getRandomPokemon } from "../services/api";
+import { useLazyQuery } from "@apollo/client";
+import { GET_POKEMON } from "../services/graphql/queries";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const [getPokemon, { loading }] = useLazyQuery(GET_POKEMON, {
+    onCompleted: (data) => {
+      if (data.pokemon) {
+        navigate(`/pokemon/${search.toLowerCase()}`);
+      }
+    },
+    onError: () => {
+      navigate("/pokemon/notfound");
+    },
+  });
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!search) return;
-    setIsLoading(true);
-    try {
-      await getPokemon(search);
-      setIsLoading(false);
-      navigate(`/pokemon/${search.toLowerCase()}`);
-    } catch (error) {
-      setIsLoading(false);
-      navigate(`/pokemon/notfound`);
-      // throw new Error(` an Error occurred: ${error}`);
-    }
+
+    getPokemon({
+      variables: {
+        idOrName: search.toLowerCase(),
+      },
+    });
   };
   const handleRandom = async () => {
     setIsLoading(false);
@@ -55,14 +63,14 @@ const SearchPage = () => {
           <div className="button-group">
             <Button
               type="submit"
-              isDisabled={isLoading}
+              isDisabled={loading}
               className="button-primary"
             >
               Search
             </Button>
             <Button
               type="button"
-              isDisabled={isLoading}
+              isDisabled={loading}
               className="button-primary"
               onClick={handleRandom}
             >
