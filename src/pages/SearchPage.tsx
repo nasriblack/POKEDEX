@@ -50,6 +50,7 @@ const SearchPage = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="input"
+              data-testid="search_input"
             />
           </div>
           <div className="button-group">
