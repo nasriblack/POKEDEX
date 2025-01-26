@@ -8,9 +8,12 @@ import {
   getPokemonSpecies,
 } from "../services/api";
 import { TYPE_COLORS } from "../constants/pokemonColor";
-import { ArrowLeft, ChevronLeft, ChevronRight, MoveRight } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Button from "../components/button/Button";
-import { statNameTransformation } from "../utlis";
+import EvolutionComponent from "../components/pokemon-page/EvolutionComponent";
+import StatComponent from "../components/pokemon-page/StatComponent";
+import TabComponent from "../components/pokemon-page/TabComponent";
+import InformationPokemonComponent from "../components/pokemon-page/InformationPokemonComponent";
 
 const PokemonPage = () => {
   const { idOrName } = useParams<{ idOrName: string }>();
@@ -58,110 +61,6 @@ const PokemonPage = () => {
     .find((entry) => entry.language.name === "en")
     ?.flavor_text.replace(/\f/g, " ");
 
-  const renderStats = () => (
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "35rem",
-      }}
-    >
-      {pokemon.stats.map((stat) => (
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "0.5rem",
-          }}
-        >
-          <div className="stat_name" style={{ color: backgroundColor }}>
-            {statNameTransformation(stat.stat.name)}
-          </div>
-          <div className="stat_base">{stat.base_stat}</div>
-          <div className="stat_bar">
-            <div
-              className="stat_bar_fill"
-              style={{
-                width: `${(stat.base_stat / 255) * 100}%`,
-                backgroundColor,
-              }}
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-  const renderEvolutions = () => {
-    const chain = evolution.chain;
-    const evolutions = [
-      chain.species.name,
-      ...chain.evolves_to.map((e) => e.species.name),
-      ...chain.evolves_to.flatMap((e) =>
-        e.evolves_to.map((e2) => e2.species.name)
-      ),
-    ];
-    const pokemonEvolution = [
-      {
-        name: chain?.species?.name,
-        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-          chain.species.url.split("/")[6]
-        }.png`,
-      },
-      ...chain.evolves_to.map((e) => {
-        return {
-          name: e.species.name,
-          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-            e.species.url.split("/")[6]
-          }.png`,
-        };
-      }),
-      ...chain.evolves_to.flatMap((e) =>
-        e.evolves_to.map((e2) => {
-          return {
-            name: e2.species.name,
-            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-              e2.species.url.split("/")[6]
-            }.png`,
-          };
-        })
-      ),
-    ];
-
-    return (
-      <div className="evolution_container">
-        {pokemonEvolution?.map((item, index) => (
-          <React.Fragment key={index}>
-            {index > 0 && <MoveRight color={backgroundColor} />}
-            <div
-              style={{
-                textAlign: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => navigate(`/pokemon/${item.name}`)}
-            >
-              <img
-                src={item.img}
-                alt={item.name}
-                style={{
-                  width: "6rem",
-                  height: "6rem",
-                }}
-              />
-              <p
-                style={{
-                  textTransform: "capitalize",
-                  marginTop: "0.5rem",
-                }}
-              >
-                {item.name}
-              </p>
-            </div>
-          </React.Fragment>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <>
       <div style={{ backgroundColor }} className="pokemon_page_container">
@@ -170,52 +69,30 @@ const PokemonPage = () => {
         </button>
 
         <div className="pokemon_page_content_card">
-          <img
-            src={pokemon.sprites.other["official-artwork"].front_default}
-            alt={pokemon.name}
-            className="pokemon_page_image"
+          <InformationPokemonComponent
+            pokemon={pokemon}
+            description={description}
           />
 
-          <h1 className="pokemon_page_title">{pokemon.name}</h1>
-
-          <div className="pokemon_page_type_container">
-            {pokemon.types.map((type) => (
-              <span
-                key={type.type.name}
-                className="pokemon_page_type"
-                style={{
-                  backgroundColor:
-                    TYPE_COLORS[type.type.name as keyof typeof TYPE_COLORS],
-                }}
-              >
-                {type.type.name}
-              </span>
-            ))}
-          </div>
-
-          <p className="description">{description}</p>
-
-          <div className="pokemon_page_tab_container">
-            {(["stats", "evolutions", "moves"] as const).map((tab) => (
-              <Button
-                type="button"
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`tab_button ${activeTab === tab ? "active" : ""}`}
-                style={
-                  activeTab === tab
-                    ? { backgroundColor }
-                    : { color: backgroundColor }
-                }
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </Button>
-            ))}
-          </div>
+          <TabComponent
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            backgroundColor={backgroundColor}
+          />
 
           <div className="pokemon_page_tab_content">
-            {activeTab === "stats" && renderStats()}
-            {activeTab === "evolutions" && renderEvolutions()}
+            {activeTab === "stats" && (
+              <StatComponent
+                pokemon={pokemon}
+                backgroundColor={backgroundColor}
+              />
+            )}
+            {activeTab === "evolutions" && (
+              <EvolutionComponent
+                backgroundColor={backgroundColor}
+                evolution={evolution}
+              />
+            )}
           </div>
         </div>
       </div>
