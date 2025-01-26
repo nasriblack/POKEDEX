@@ -16,7 +16,7 @@ describe("Rendering the information Pokemon Component", () => {
     );
   };
 
-  it("renders search input and buttons", () => {
+  it("should render the information of the pokemon", () => {
     renderComponent();
 
     expect(screen.getByText(mockedPokemon.name)).toBeInTheDocument();
