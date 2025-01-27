@@ -2,6 +2,8 @@
 
 A modern React application for exploring Pokemon using the PokeAPI GraphQL endpoint. Built with React, TypeScript, Tailwind CSS, and Apollo Client ( in progress ).
 
+This Project was made with pnpm as package manager, so if you want to use npm or yarn, you can change the package.json file and replace all the pnpm commands with npm or yarn.
+
 ![Pokemon Explorer](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png)
 
 ## Features
@@ -45,6 +47,11 @@ npm install
 Start the development server:
 ```bash
 npm run dev
+```
+
+Start unit tests:
+```bash
+npm run test
 ```
 
 Run Storybook:
