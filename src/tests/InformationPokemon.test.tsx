@@ -29,7 +29,5 @@ describe("Rendering the information Pokemon Component", () => {
       "src",
       mockedPokemon.sprites.other["official-artwork"].front_default
     );
-
-    screen.debug();
   });
 });

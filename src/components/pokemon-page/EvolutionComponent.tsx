@@ -11,7 +11,6 @@ type Props = {
 };
 
 const EvolutionComponent = ({ pokemonEvolution, backgroundColor }: Props) => {
-  console.log("pokemonEvolution", pokemonEvolution);
   const navigate = useNavigate();
 
   return (

@@ -24,6 +24,5 @@ describe("Rendering the information Pokemon Component", () => {
       expect(screen.getByAltText(evolution.name)).toBeInTheDocument();
     });
 
-    screen.debug();
   });
 });
