@@ -1,50 +1,111 @@
-# React + TypeScript + Vite
+# Pokemon Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application for exploring Pokemon using the PokeAPI GraphQL endpoint. Built with React, TypeScript, Tailwind CSS, and Apollo Client ( in progress ).
 
-Currently, two official plugins are available:
+![Pokemon Explorer](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🔍 Search Pokemon by name or ID
+- 🎲 Random Pokemon selector
+- 📊 Detailed Pokemon stats
+- 🔄 Evolution chain visualization
+- 🎨 Type-based theming
+- 📱 Responsive design
+- 📚 Component documentation with Storybook
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- React 18
+- TypeScript
+- Tailwind CSS
+- Apollo Client
+- GraphQL Code Generator
+- Storybook
+- Vite
+- React Router
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v7 or higher)
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Development
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Start the development server:
+```bash
+npm run dev
 ```
+
+Run Storybook:
+```bash
+npm run storybook
+```
+
+### Building for Production
+
+Build the application:
+```bash
+npm run build
+```
+
+Preview the production build:
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/       # Reusable UI components
+├── constants/        # Application constants
+├── pages/           # Page components
+├── services/        # API services
+├── tests/          # Test utilities
+└── types/           # TypeScript type definitions
+```
+
+## Features in Detail
+
+### Search Page
+- Search Pokemon by name or ID
+- Random Pokemon selector
+- Error handling for non-existent Pokemon
+
+### Pokemon Details Page
+- Dynamic background color based on Pokemon type
+- Detailed Pokemon information
+- Stats visualization
+- Evolution chain
+- Type badges with appropriate colors
+
+### Component Library
+- Documented components in Storybook
+- Reusable PokemonCard component
+- Type-safe props with TypeScript
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+
+## Acknowledgments
+
+- [PokeAPI](https://pokeapi.co/) for the Pokemon data
+- [PokeAPI GraphQL](https://beta.pokeapi.co/graphql/v1beta) for the GraphQL endpoint
+- Pokemon sprites from the official PokeAPI sprites repository
