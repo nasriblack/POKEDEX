@@ -13,7 +13,7 @@ import Button from "../components/button/Button";
 import EvolutionComponent from "../components/pokemon-page/EvolutionComponent";
 import StatComponent from "../components/pokemon-page/StatComponent";
 import TabComponent from "../components/pokemon-page/TabComponent";
-import InformationPokemonComponent from "../components/pokemon-page/InformationPokemonComponent";
+import InformationPokemonComponent from "../components/pokemon-page/information-pokemon/InformationPokemonComponent";
 
 const PokemonPage = () => {
   const { idOrName } = useParams<{ idOrName: string }>();

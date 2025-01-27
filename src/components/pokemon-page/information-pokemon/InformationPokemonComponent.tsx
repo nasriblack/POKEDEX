@@ -1,6 +1,7 @@
 import React from "react";
-import { Pokemon } from "../../types/pokemon";
-import { TYPE_COLORS } from "../../constants/pokemonColor";
+import { TYPE_COLORS } from "../../../constants/pokemonColor";
+import { Pokemon } from "../../../types/pokemon";
+import "./informationPokemonComponent.css";
 
 type Props = {
   pokemon: Pokemon | null;
