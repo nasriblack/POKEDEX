@@ -1,4 +1,3 @@
-import React from "react";
 import { statNameTransformation } from "../../../utlis";
 import { Pokemon } from "../../../types/pokemon";
 import "./statPokemonComponent.css";

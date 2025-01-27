@@ -1,4 +1,3 @@
-import React from "react";
 import { TYPE_COLORS } from "../../../constants/pokemonColor";
 import { Pokemon } from "../../../types/pokemon";
 import "./informationPokemonComponent.css";

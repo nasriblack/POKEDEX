@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { EvolutionChain, Pokemon, PokemonSpecies } from "../types/pokemon";
 import {
@@ -9,7 +9,6 @@ import {
 } from "../services/api";
 import { TYPE_COLORS } from "../constants/pokemonColor";
 import { ChevronLeft } from "lucide-react";
-import Button from "../components/button/Button";
 import EvolutionComponent from "../components/pokemon-page/evolution-pokemon/EvolutionComponent";
 import StatComponent from "../components/pokemon-page/stat-pokemon/StatComponent";
 import TabComponent from "../components/pokemon-page/TabComponent";
