@@ -7,6 +7,16 @@ import  Button from './Button';
 const meta = {
   title: 'Pokedex/Button',
   component: Button,
+  argTypes:{
+    type:{
+      control:{
+        type:'radio',
+      },
+      options:['submit','reset','button']
+
+      
+    }
+  },
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
