@@ -9,17 +9,24 @@ type Props = {
   isDisabled?: boolean;
 };
 
-const Button = (props: Props) => {
+const Button = ({
+  type,
+  className,
+  onClick,
+  style,
+  isDisabled,
+  children,
+}: Props) => {
   return (
     <>
       <button
-        type={props.type}
-        className={props.className}
-        onClick={props.onClick}
-        style={props.style}
-        disabled={props.isDisabled}
+        type={type}
+        className={className}
+        onClick={onClick}
+        style={style}
+        disabled={isDisabled}
       >
-        {props.children}
+        {children}
       </button>
     </>
   );
