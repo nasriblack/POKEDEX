@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { MemoryRouter as Router } from "react-router-dom";
 import { mockedEvolutionChain } from "./mockedPokemon";
-import EvolutionComponent from "../components/pokemon-page/EvolutionComponent";
+import EvolutionComponent from "../components/pokemon-page/evolution-pokemon/EvolutionComponent";
 
 describe("Rendering the information Pokemon Component", () => {
   const renderComponent = () => {
@@ -23,6 +23,5 @@ describe("Rendering the information Pokemon Component", () => {
       expect(screen.getByText(evolution.name)).toBeInTheDocument();
       expect(screen.getByAltText(evolution.name)).toBeInTheDocument();
     });
-
   });
 });

@@ -1,6 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { MoveRight } from "lucide-react";
+import "./evolutionPokemonComponent.css";
 
 type Props = {
   pokemonEvolution: {
@@ -8,10 +9,15 @@ type Props = {
     img: string;
   }[];
   backgroundColor: string;
+  onClick?: (name: string) => void;
 };
 
-const EvolutionComponent = ({ pokemonEvolution, backgroundColor }: Props) => {
-  const navigate = useNavigate();
+const EvolutionComponent = ({
+  pokemonEvolution,
+  backgroundColor,
+  onClick,
+}: Props) => {
+  // const navigate = useNavigate();
 
   return (
     <div className="evolution_container">
@@ -23,7 +29,8 @@ const EvolutionComponent = ({ pokemonEvolution, backgroundColor }: Props) => {
               textAlign: "center",
               cursor: "pointer",
             }}
-            onClick={() => navigate(`/pokemon/${item.name}`)}
+            onClick={() => onClick && onClick(item.name)}
+            // onClick={() => navigate(`/pokemon/${item.name}`)}
           >
             <img
               src={item.img}

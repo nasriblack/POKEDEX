@@ -230,13 +230,4 @@ body {
 }
 
 
-/* EVOLUTION TAB CSS */
-
-.evolution_container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  align-items: center;
-
-}
 

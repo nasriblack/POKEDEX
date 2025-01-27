@@ -10,7 +10,7 @@ import {
 import { TYPE_COLORS } from "../constants/pokemonColor";
 import { ChevronLeft } from "lucide-react";
 import Button from "../components/button/Button";
-import EvolutionComponent from "../components/pokemon-page/EvolutionComponent";
+import EvolutionComponent from "../components/pokemon-page/evolution-pokemon/EvolutionComponent";
 import StatComponent from "../components/pokemon-page/StatComponent";
 import TabComponent from "../components/pokemon-page/TabComponent";
 import InformationPokemonComponent from "../components/pokemon-page/information-pokemon/InformationPokemonComponent";
@@ -119,6 +119,7 @@ const PokemonPage = () => {
               <EvolutionComponent
                 backgroundColor={backgroundColor}
                 pokemonEvolution={pokemonEvolution}
+                onClick={(name) => navigate(`/pokemon/${name}`)}
               />
             )}
           </div>
