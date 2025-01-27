@@ -1,6 +1,7 @@
 import React from "react";
-import { statNameTransformation } from "../../utlis";
-import { Pokemon } from "../../types/pokemon";
+import { statNameTransformation } from "../../../utlis";
+import { Pokemon } from "../../../types/pokemon";
+import "./statPokemonComponent.css";
 
 type Props = {
   pokemon: Pokemon;
@@ -11,7 +12,7 @@ const StatComponent = ({ pokemon, backgroundColor }: Props) => {
   return (
     <div
       style={{
-        width: "100%",
+        width: "25rem",
         maxWidth: "35rem",
       }}
     >

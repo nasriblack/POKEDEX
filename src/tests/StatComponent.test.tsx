@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { MemoryRouter as Router } from "react-router-dom";
 import { mockedPokemon } from "./mockedPokemon";
-import StatComponent from "../components/pokemon-page/StatComponent";
+import StatComponent from "../components/pokemon-page/stat-pokemon/StatComponent";
 
 describe("Rendering the information Pokemon Component", () => {
   const renderComponent = () => {
