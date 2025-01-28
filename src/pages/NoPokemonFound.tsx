@@ -13,7 +13,7 @@ const NoPokemonFound = () => {
         />
         <h1 className="title_nopokemon">No Pokemon Found!</h1>
       </div>
-      <img src="/public/nopokemon_found.png" alt="no_pokemon_found" />
+      <img src="public/../../nopokemon_found.png" alt="no_pokemon_found" />
     </div>
   );
 };

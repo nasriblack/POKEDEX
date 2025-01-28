@@ -40,7 +40,7 @@ const SearchPage = () => {
     <div className="container">
       <div className="card">
         <div className="pokeball-container">
-          <img src="/pokeball.png" alt="Pokeball" className="pokeball" />
+          <img src="./pokeball.png" alt="Pokeball" className="pokeball" />
         </div>
         <form onSubmit={handleSearch} className="form">
           <div className="form-group">
