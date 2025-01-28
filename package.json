@@ -1,6 +1,7 @@
 {
   "name": "pokedex",
   "private": true,
+  "homepage": "https://nasriblack.github.io/POKEDEX",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,11 +10,13 @@
     "lint": "eslint .",
     "test": "vitest",
     "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "gh-pages": "^6.3.0",
     "lucide-react": "^0.474.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
