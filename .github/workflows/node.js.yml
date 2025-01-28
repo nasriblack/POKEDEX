@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -27,7 +27,12 @@ jobs:
     - name: Setup pnpm
       uses: pnpm/action-setup@v2
       with:
-        version: 8 # Specify the pnpm version you want to use
+        version: 9 # Specify the pnpm version you want to use
+    - name: Print PATH
+      run: echo $PATH
+
+    - name: Check pnpm version
+      run: pnpm --version
 
     - name: Install dependencies
       run: pnpm install
