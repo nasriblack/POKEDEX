@@ -6,7 +6,7 @@ import NoPokemonFound from "./pages/NoPokemonFound";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/POKEDEX">
       <Routes>
         <Route path="/" element={<SearchPage />} />
         <Route path="/pokemon/:idOrName" element={<PokemonPage />} />
